@@ -1,4 +1,4 @@
-# Button-Matrix-React
+# img-to-button
 ## Simple exercise
 Trying to create a simple "pixel renderer" out of buttons initially.\
 This may change drastically over time.
