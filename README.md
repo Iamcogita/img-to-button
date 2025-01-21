@@ -5,7 +5,7 @@ This may change drastically over time.
 Or stay forgotten.
 
 ### `npm i`
-Install dependencies first.\
+Install dependencies first.
 
 ### `npm start`
 Runs the app in the development mode.\
