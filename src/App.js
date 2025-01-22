@@ -5,7 +5,7 @@ import { extractPixels } from "./pixelExtractor";
 import { Break , Button } from "./components";
 
 const Matrix = () => {
-  //Promise String[] from pixelExtractor
+  // String[] promise from pixelExtractor
   const [bgColor, setBgColor] = useState(["rgba(0, 0, 0, 1.0)"]);
   useEffect(() => {
     const fetchColors = async () => {
@@ -14,7 +14,7 @@ const Matrix = () => {
     };
     fetchColors();
   }, []);
-  // Array of number of Buttons
+  // Array of Buttons
   const matrixArray = [];
   for (let i = 0; i < matrixSquare * matrixSquare; i++) {matrixArray.push(i);}
   return (

@@ -20,12 +20,24 @@ export async function extractPixels(img) {
         buttonProps.push(`rgba(${r}, ${g}, ${b}, ${a})`);
       }
     }
-    // TODO better resizer ; This one only works on a 1:1 ratio; currently not resizing
-    const mult = Math.floor((canvas.width * canvas.height) / (matrixSquare * matrixSquare));
-    const buttonPropsArr = buttonProps.filter((_, index) => index % mult === 0);
-    
-    return buttonPropsArr;
-  } catch (error) {
+
+    // TODO better resizer ; This is messed up but works for mult 4
+    const mult = Math.floor((width * height) / (matrixSquare * matrixSquare));
+    if(mult > 1){
+      const buttonPropsArr = buttonProps.filter((_, index) => index % Math.sqrt(mult) === 0 );
+      const newArr = [];
+      let arrCounter = 0;
+      for(let y = 0 ; y < height ; y++){
+        for(let x = 0 ; x < matrixSquare ; x++){
+          arrCounter++;
+          if(y % 2 === 0 ){ newArr.push(buttonPropsArr[arrCounter]) };
+      }
+     }
+     return newArr
+    }
+    else return buttonProps;
+    }
+    catch (error) {
     console.error(error);
     return [];
   }
