@@ -4,6 +4,8 @@ Trying to create a simple "pixel renderer" out of buttons initially.\
 This may change drastically over time.
 Or stay forgotten.
 
+<img src="https://github.com/user-attachments/assets/4b27c9cd-c68a-4d3a-aaf5-da9bc3263049" width="200" height="200">
+
 ### `npm i`
 Install dependencies first.
 
