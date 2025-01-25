@@ -1,4 +1,5 @@
 import { createCanvas, loadImage } from "canvas";
+import { resizeImage } from "./resizer";
 
 export async function extractPixels(img) {
   try {
@@ -15,11 +16,13 @@ export async function extractPixels(img) {
         const r = data[index];
         const g = data[index + 1];
         const b = data[index + 2];
-        const a = ((data[index + 3]) / 255).toFixed(2);
+        const a = data[index + 3];
+        //pixelArray.push([r,g,b,a]);
         pixelArray.push(`rgba(${r}, ${g}, ${b}, ${a})`);
       }
     }
-    return pixelArray;
+
+    return resizeImage(pixelArray , height , width );
   }
   catch (error) {
     console.error(error);
