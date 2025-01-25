@@ -9,7 +9,9 @@ export async function extractPixels(img) {
     ctx.drawImage(image, 0, 0);
     const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-    const pixelArray = [];
+    const pixelArray = Array.from({ length: width }, () =>
+      Array.from({ length: height }, () => []));
+
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const index = (y * width + x) * 4;
@@ -17,12 +19,13 @@ export async function extractPixels(img) {
         const g = data[index + 1];
         const b = data[index + 2];
         const a = data[index + 3];
-        //pixelArray.push([r,g,b,a]);
-        pixelArray.push(`rgba(${r}, ${g}, ${b}, ${a})`);
+        pixelArray[y][x]=[r,g,b,a];
       }
-    }
 
-    return resizeImage(pixelArray , height , width );
+    }
+    console.log(pixelArray)
+
+    return resizeImage(pixelArray, width, height);
   }
   catch (error) {
     console.error(error);

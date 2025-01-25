@@ -1,25 +1,7 @@
-import {matrixSquare , xLength}from "./controler"
+import {xLength, yLength}from "./controler"
 
-export function resizeImage(pixelArray, imgHeight, imgWidth) {
-
-  const mult = Math.round((imgHeight * imgWidth) / matrixSquare);
-  const squareMult = Math.round(Math.sqrt(mult));
-
-  if(mult > 1 ){
-      const buttonPropsArr = pixelArray.filter((_, index) => index % squareMult === 0 );
-      const newArr = [];
-      let arrCounter = 0;
-      for(let y = 0 ; y < imgHeight ; y++){
-        for(let x = 0 ; x < xLength ; x++){
-          arrCounter++;
-          if(y % squareMult === 0 ){ newArr.push(buttonPropsArr[arrCounter]) };
-      }
-     }
-    return newArr;
-  }
-
-  /*
-  const outputPixels = Array.from({ length: outputHeight }, () => Array(outputWidth).fill([0, 0, 0, 0]));
+export function resizeImage(inputPixels, inputWidth , inputHeight) {
+  const outputPixels = Array.from({ length: yLength }, () => Array(xLength).fill([0, 0, 0, 0]));
 
   function processRegion(startX, endX, startY, endY, outputX, outputY) {
       // Base case: If the region corresponds to one output pixel
@@ -50,7 +32,7 @@ export function resizeImage(pixelArray, imgHeight, imgWidth) {
       const avgA = Math.floor(sumA / count);
 
       // Assign the average color to the output pixel
-      outputPixels[outputY][outputX] = [avgR, avgG, avgB , (avgA / 255).toFixed(2)];
+      outputPixels[outputY][outputX] = [avgR, avgG, avgB ,avgA];
   }
 
   // Helper function to recursively divide the input image into smaller blocks
@@ -64,12 +46,12 @@ export function resizeImage(pixelArray, imgHeight, imgWidth) {
   }
 
   // Scaling factors
-  const scaleX = inputWidth / outputWidth;
-  const scaleY = inputHeight / outputHeight;
+  const scaleX = inputWidth / xLength;
+  const scaleY = inputHeight / yLength;
 
   // Start the recursion for each output pixel
-  for (let outputY = 0; outputY < outputHeight; outputY++) {
-      for (let outputX = 0; outputX < outputWidth; outputX++) {
+  for (let outputY = 0; outputY < yLength; outputY++) {
+      for (let outputX = 0; outputX < xLength; outputX++) {
           const startX = Math.floor(outputX * scaleX);
           const endX = Math.floor((outputX + 1) * scaleX);
           const startY = Math.floor(outputY * scaleY);
@@ -82,8 +64,5 @@ export function resizeImage(pixelArray, imgHeight, imgWidth) {
   const returnArr = [];
   const flatArray = outputPixels.flat();
   flatArray.forEach((e) => {returnArr.push("rgba("+ e +")");});
-  console.log(returnArr)
   return returnArr;
-  */
-
 }

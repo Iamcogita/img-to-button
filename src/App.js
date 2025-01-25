@@ -1,6 +1,6 @@
 import "./styles.css";
 import React, { useState, useEffect } from "react";
-import { matrixSquare , imgPath, xLength } from "./controler";
+import { imgPath, xLength, yLength } from "./controler";
 import { extractPixels } from "./pixelExtractor";
 import { Break , Button } from "./components";
 
@@ -15,7 +15,7 @@ const Matrix = () => {
   }, []);
   // Array of Buttons
   const buttonArray = [];
-  for (let i = 0; i < matrixSquare; i++) {buttonArray.push(i);}
+  for (let i = 0; i < xLength*yLength; i++) {buttonArray.push(i);}
   return (
     <div className="matrix">
       {buttonArray.map((_, i) =>
